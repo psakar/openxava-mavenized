@@ -526,7 +526,13 @@ public class Module extends DWRBase {
 		if (value.toString().startsWith("[reference:")) {
 			return "true";
 		} 
-		return URLEncoder.encode(value.toString(), request.getCharacterEncoding()); 
+		//http://stackoverflow.com/questions/1674432/prevent-illegalstateexception-when-reading-from-request
+    String charsetName = request.getCharacterEncoding();
+    if (charsetName == null) {
+        charsetName = "UTF-8";
+    }
+
+		return URLEncoder.encode(value.toString(), charsetName); 
 	}
 	
 	private static boolean isPortlet() {
