@@ -1,0 +1,1 @@
+Unnofficial openxava maven artifact.
